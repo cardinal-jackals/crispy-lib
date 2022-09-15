@@ -9,7 +9,7 @@ jobs:
       - name: Execute validation
         shell: bash
         run: |
-          python validate.py
+          python verify.py
       - name: Post Results
         shell: bash
         env:
