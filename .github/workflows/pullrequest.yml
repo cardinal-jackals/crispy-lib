@@ -7,11 +7,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Execute validation
+        shell: bash
         run: |
           python validate.py
       - name: Post Results
-        with:
-          JENKINS_USERNAME: ${{ secrets.JENKINS_USERNAME }}
-          JENKINS_PASSWORD: ${{ secrets.JENKINS_USERNAME }}
+        shell: bash
+        env:
+          JENKINS_USERNAME: "${{ secrets.JENKINS_USERNAME }}"
+          JENKINS_PASSWORD: "${{ secrets.JENKINS_USERNAME }}"
         run: |
           curl -u "$JENKINS_USERNAME:$JENKINS_PASSWORD" http://ci.cardinal-jackals.com/jobs/validate/success
